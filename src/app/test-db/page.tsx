@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 type ConnectionResult =
   | { status: "success" }
@@ -20,6 +20,7 @@ function formatSupabaseError(error: {
 }
 
 async function testConnection(): Promise<ConnectionResult> {
+  const supabase = await createClient();
   const { error } = await supabase
     .from("restaurants")
     .select("id", { count: "exact", head: true });
