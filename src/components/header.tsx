@@ -19,6 +19,12 @@ export async function Header() {
         </Link>
 
         <nav className="flex items-center gap-4 text-sm">
+          <Link
+            href="/restaurants"
+            className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            Restaurants
+          </Link>
           {user ? (
             <>
               <Link

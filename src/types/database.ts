@@ -9,3 +9,17 @@ export type Profile = {
   created_at: string;
   updated_at: string;
 };
+
+export type Restaurant = {
+  id: string;
+  owner_id: string;
+  name: string;
+  description: string | null;
+  image_url: string | null;
+  address: string;
+  city: string;
+  category: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+};
