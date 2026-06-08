@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DeleteMenuItemButton } from "@/components/delete-menu-item-button";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { formatPrice } from "@/app/restaurants/menu/state";
 import { getRestaurantWithAccess } from "@/lib/auth/require-restaurant-owner";
 import { createClient } from "@/lib/supabase/server";
@@ -17,10 +18,12 @@ function MenuItemCard({
   item,
   restaurantId,
   isOwner,
+  isLoggedIn,
 }: {
   item: MenuItem;
   restaurantId: string;
   isOwner: boolean;
+  isLoggedIn: boolean;
 }) {
   return (
     <article className="rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
@@ -74,6 +77,23 @@ function MenuItemCard({
                 menuItemName={item.name}
               />
             </div>
+          ) : item.is_available ? (
+            isLoggedIn ? (
+              <AddToCartButton
+                menuItemId={item.id}
+                restaurantId={restaurantId}
+              />
+            ) : (
+              <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
+                <Link
+                  href={`/login?redirectTo=${encodeURIComponent(`/restaurants/${restaurantId}/menu`)}`}
+                  className="font-medium text-zinc-900 underline-offset-4 hover:underline dark:text-zinc-100"
+                >
+                  Log in
+                </Link>{" "}
+                to add to cart
+              </p>
+            )
           ) : null}
         </div>
       </div>
@@ -84,7 +104,7 @@ function MenuItemCard({
 export default async function MenuPage({ params, searchParams }: MenuPageProps) {
   const { id } = await params;
   const { error, deleted } = await searchParams;
-  const { restaurant, isOwner } = await getRestaurantWithAccess(id);
+  const { restaurant, isOwner, user } = await getRestaurantWithAccess(id);
   const supabase = await createClient();
 
   const { data: menuItems } = await supabase
@@ -149,6 +169,7 @@ export default async function MenuPage({ params, searchParams }: MenuPageProps) 
               item={item}
               restaurantId={id}
               isOwner={isOwner}
+              isLoggedIn={Boolean(user)}
             />
           ))}
         </div>

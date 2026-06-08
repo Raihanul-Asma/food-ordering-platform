@@ -35,3 +35,28 @@ export type MenuItem = {
   created_at: string;
   updated_at: string;
 };
+
+export type CartItem = {
+  id: string;
+  user_id: string;
+  menu_item_id: string;
+  quantity: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CartLineItem = {
+  id: string;
+  quantity: number;
+  menu_item: {
+    id: string;
+    name: string;
+    price: number;
+    image_url: string | null;
+    is_available: boolean;
+    restaurant_id: string;
+    restaurants: {
+      name: string;
+    } | null;
+  } | null;
+};
