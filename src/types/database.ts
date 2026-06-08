@@ -23,3 +23,15 @@ export type Restaurant = {
   created_at: string;
   updated_at: string;
 };
+
+export type MenuItem = {
+  id: string;
+  restaurant_id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  image_url: string | null;
+  is_available: boolean;
+  created_at: string;
+  updated_at: string;
+};

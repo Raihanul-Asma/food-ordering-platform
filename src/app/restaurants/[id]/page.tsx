@@ -98,6 +98,15 @@ export default async function RestaurantDetailPage({
             </dd>
           </div>
         </dl>
+
+        <div className="mt-8">
+          <Link
+            href={`/restaurants/${id}/menu`}
+            className="inline-flex h-10 items-center justify-center rounded-lg bg-zinc-900 px-4 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+          >
+            View menu
+          </Link>
+        </div>
       </article>
 
       {isOwner ? (
