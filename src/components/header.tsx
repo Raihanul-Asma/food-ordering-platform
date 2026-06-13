@@ -28,6 +28,12 @@ export async function Header() {
           {user ? (
             <>
               <Link
+                href="/orders"
+                className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              >
+                Orders
+              </Link>
+              <Link
                 href="/cart"
                 className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
               >

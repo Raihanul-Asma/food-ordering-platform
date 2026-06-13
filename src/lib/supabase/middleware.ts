@@ -34,6 +34,7 @@ export async function updateSession(request: NextRequest) {
   const isProtectedRoute =
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/cart") ||
+    pathname.startsWith("/orders") ||
     pathname.startsWith("/restaurants/new") ||
     /\/restaurants\/[^/]+\/menu\/new/.test(pathname) ||
     /\/restaurants\/[^/]+\/menu\/[^/]+\/edit/.test(pathname);

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { calculateCartSubtotal } from "@/app/cart/state";
 import { formatPrice } from "@/app/restaurants/menu/state";
 import { CartQuantityControls } from "@/components/cart-quantity-controls";
+import { PlaceOrderForm } from "@/components/place-order-form";
 import { requireLoggedInUser } from "@/lib/auth/require-user";
 import { createClient } from "@/lib/supabase/server";
 import type { CartLineItem } from "@/types/database";
@@ -127,6 +128,8 @@ export default async function CartPage() {
                 {formatPrice(subtotal)}
               </span>
             </div>
+
+            <PlaceOrderForm />
           </div>
         </>
       ) : (
